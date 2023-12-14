@@ -44,12 +44,11 @@ pipeline {
 }
 
 
-        stage('Deploy') {
-            steps {
-                script {
-                        sh "sam deploy --template-file template.yml --stack-name $STACK_NAME --parameter-overrides ParameterKey=Stage,ParameterValue=${params.DEPLOY_STAGE} --capabilities CAPABILITY_IAM"
-                }
-            }
+        stage('Print Debug Information') {
+    steps {
+        script {
+            sh "sam deploy --template-file template.yml --stack-name book-app-production --parameter-overrides ParameterKey=Stage,ParameterValue=production --capabilities CAPABILITY_IAM"
         }
     }
 }
+
