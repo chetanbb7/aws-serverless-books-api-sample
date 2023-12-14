@@ -34,14 +34,15 @@ pipeline {
             }
         }
         
-        stage('Package Application') {
-            steps {
-                script {
-                        sh "sam build"
-                        sh "sam package --s3-bucket ${params.ARTIFACTS_BUCKET} --s3-prefix ${params.ARTIFACTS_PREFIX} --output-template-file template.yml"
-                }
-            }
+        stage('Print SAM Package Command') {
+    steps {
+        script {
+            def samPackageCommand = "sam package --s3-bucket ${params.ARTIFACTS_BUCKET} --s3-prefix ${params.ARTIFACTS_PREFIX} --output-template-file template.yml"
+            echo "SAM Package Command: $samPackageCommand"
         }
+    }
+}
+
 
         stage('Deploy') {
             steps {
