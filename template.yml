@@ -3,7 +3,7 @@ service: cloudbloom-chetan
 provider:
   name: aws
   runtime: nodejs18.x
-  region: us-east-1
+  region: ap-south-1
 
 plugins:
   - serverless-s3-sync
